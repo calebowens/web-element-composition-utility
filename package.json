@@ -1,10 +1,12 @@
 {
   "name": "wecu",
   "description": "A library for building composable, reactive web components.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "exports": {
-    ".": "./lib/"
+    "./component": "./lib/component.js",
+    "./observable": "./lib/observable.js",
+    "./components": "./lib/components"
   },
   "repository": "https://github.com/calebowens/web-element-composition-utility",
   "author": "Caleb Owens <Cocacola5010mc@Gmail.com>",
