@@ -1,11 +1,17 @@
 {
-  "name": "web-framework-idea",
+  "name": "wecu",
+  "description": "A library for building composable, reactive web components.",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/calebowens/web-framework-idea",
+  "type": "module",
+  "exports": {
+    ".": "./src/"
+  },
+  "repository": "https://github.com/calebowens/web-element-composition-utility",
   "author": "Caleb Owens <Cocacola5010mc@Gmail.com>",
   "license": "MIT",
   "dependencies": {
+  },
+  "devDependencies": {
     "@babel/core": "^7.16.12",
     "@babel/plugin-transform-react-jsx": "^7.16.7",
     "gulp": "^4.0.2",
@@ -16,7 +22,7 @@
     "typescript": "^4.5.5",
     "webpack": "^5.67.0",
     "webpack-stream": "^7.0.0"
-  },
+},
   "scripts": {
     "watch": "gulp watch",
     "serve": "gulp serve"
