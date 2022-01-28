@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Select extends Component {
     public element = document.createElement('select')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

@@ -3,7 +3,7 @@ import Component from '../component'
 export default class FigCaption extends Component {
     public element = document.createElement('figcaption')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

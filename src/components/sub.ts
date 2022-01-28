@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Sub extends Component {
     public element = document.createElement('sub')
 
-    constructor(public children: string) {
+    constructor(public children?: string) {
         super()
     }
 

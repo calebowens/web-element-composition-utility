@@ -3,7 +3,7 @@ import Component from '../component'
 export default class H4 extends Component {
     public element = document.createElement('h4')
 
-    constructor(public children: string) {
+    constructor(public children?: string) {
         super()
     }
 

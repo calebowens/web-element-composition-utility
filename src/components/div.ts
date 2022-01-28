@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Div extends Component {
     public element = document.createElement('div')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

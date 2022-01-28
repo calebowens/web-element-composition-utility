@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Var extends Component {
     public element = document.createElement('var')
 
-    constructor(public children: string) {
+    constructor(public children?: string) {
         super()
     }
 

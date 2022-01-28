@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Form extends Component {
     public element = document.createElement('form')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Footer extends Component {
     public element = document.createElement('footer')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

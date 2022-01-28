@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Meta extends Component {
     public element = document.createElement('meta')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

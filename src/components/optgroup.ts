@@ -3,7 +3,7 @@ import Component from '../component'
 export default class OptGroup extends Component {
     public element = document.createElement('optgroup')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

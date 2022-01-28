@@ -3,7 +3,7 @@ import Component from '../component'
 export default class RT extends Component {
     public element = document.createElement('rt')
 
-    constructor(public children: string) {
+    constructor(public children?: string) {
         super()
     }
 

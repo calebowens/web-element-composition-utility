@@ -3,7 +3,7 @@ import Component from '../component'
 export default class THead extends Component {
     public element = document.createElement('thead')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

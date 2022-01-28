@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Portal extends Component {
     public element = document.createElement('portal')
 
-    constructor(public children: string){
+    constructor(public children?: string){
         super()
     }
 

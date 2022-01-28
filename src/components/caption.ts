@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Caption extends Component {
     public element = document.createElement('cap')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

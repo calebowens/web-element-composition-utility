@@ -3,7 +3,7 @@ import Component from '../component'
 export default class TBody extends Component {
     public element = document.createElement('tbody')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

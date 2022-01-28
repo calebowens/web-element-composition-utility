@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Map extends Component {
     public element = document.createElement('map')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

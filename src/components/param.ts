@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Param extends Component {
     public element = document.createElement('param')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

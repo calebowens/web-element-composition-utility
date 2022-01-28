@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Area extends Component {
     public element = document.createElement('area')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

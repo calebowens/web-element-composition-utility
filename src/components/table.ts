@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Table extends Component {
     public element = document.createElement('table')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

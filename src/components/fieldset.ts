@@ -3,7 +3,7 @@ import Component from '../component'
 export default class FieldSet extends Component {
     public element = document.createElement('fieldset')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

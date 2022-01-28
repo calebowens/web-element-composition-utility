@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Article extends Component {
     public element = document.createElement('article')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

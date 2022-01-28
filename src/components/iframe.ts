@@ -3,7 +3,7 @@ import Component from '../component'
 export default class IFrame extends Component {
     public element = document.createElement('iframe')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

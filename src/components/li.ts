@@ -3,7 +3,7 @@ import Component from '../component'
 export default class LI extends Component {
     public element = document.createElement('li')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

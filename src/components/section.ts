@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Section extends Component {
     public element = document.createElement('section')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

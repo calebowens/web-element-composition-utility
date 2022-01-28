@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Cite extends Component {
     public element = document.createElement('cite')
 
-    constructor(public children: string) {
+    constructor(public children?: string) {
         super()
     }
 

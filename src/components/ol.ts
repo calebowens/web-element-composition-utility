@@ -3,7 +3,7 @@ import Component from '../component'
 export default class OL extends Component {
     public element = document.createElement('ol')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

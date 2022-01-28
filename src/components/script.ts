@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Script extends Component {
     public element = document.createElement('script')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

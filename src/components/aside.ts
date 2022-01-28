@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Aside extends Component {
     public element = document.createElement('aside')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

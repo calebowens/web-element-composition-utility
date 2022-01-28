@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Heading extends Component {
     public element = document.createElement('heading')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

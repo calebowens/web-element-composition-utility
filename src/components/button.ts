@@ -4,7 +4,7 @@ import { observable } from '../observable'
 export default class Button extends Component {
     public element = document.createElement('button')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 

@@ -3,7 +3,7 @@ import Component from '../component'
 export default class Legend extends Component {
     public element = document.createElement('legend')
 
-    constructor(public children: string | Component[]) {
+    constructor(public children?: string | Component[]) {
         super()
     }
 
