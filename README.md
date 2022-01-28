@@ -29,6 +29,9 @@ This library will be ideal for:
 ### Root of an app
 
 ```ts
+import Component from "weca/component";
+import P from "weca/components/p";
+
 class Root extends Component {
   constructor() {
     super();
@@ -47,6 +50,10 @@ new Root();
 ### Conditional Rendering
 
 ```ts
+import Component from "weca/component";
+import P from "weca/components/p";
+import Button from "weca/components/button";
+
 class Root extends Component {
   private toggle = new Button("Toggle");
   private show = true;
@@ -79,6 +86,11 @@ new Root();
 ### Using an observable vairable
 
 ```ts
+import Component from "weca/component";
+import { observable } from "weca/observable";
+import P from "weca/components/p";
+import Button from "weca/components/button";
+
 class Root extends Component {
   private toggle = new Button("Toggle");
 
@@ -115,6 +127,9 @@ new Root();
 ### Registering a Component as a Web Component
 
 ```ts
+import Component, { createElement } from "weca/component";
+import P from "weca/components/p";
+
 class Root extends Component {
   constructor() {
     super();
