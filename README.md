@@ -16,6 +16,7 @@ This library aims to fix those. Maybe it will or maybe there is good reason for 
 ```ts
 class Root extends Component {
     constructor() {
+        super()
         // Init on the root element
         this.init(document.getElementById('app'))
     }
