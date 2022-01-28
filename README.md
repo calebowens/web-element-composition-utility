@@ -1,10 +1,12 @@
 # web-element-composition-utility
 
 So... I woke up one moring and thought "I don't like traditional web frameworks".
+
 Here is what I don't like
 - You can't just have one or two components in HTML
 - You can't manipulate child component's state from its parent, without managing that part of state in the parent
 - You don't controll re-renders
+
 This library aims to fix those. Maybe it will or maybe there is good reason for some of the existing constraints.
 
 ## Examples
