@@ -1,41 +1,49 @@
-import Component from "./component"
+import Component, { createElement } from "./component"
 import Button from "./components/button"
-import Input from "./components/input"
+import Div from "./components/div"
+import P from "./components/p"
+import { observable } from "./observable"
+
+class SubComponent extends Component {
+    render() {
+        return new P('Test')
+    }
+}
 
 class Root extends Component {
-    private button = new Button('reset')
-    private textInput = new Input()
-    
-    private formToggler = new Button('Toggle')
-    private showForm = true
+    private toggle = new Button('Toggle')
+
+    @observable()
+    private show = true
 
     constructor() {
         super()
-        this.init(document.getElementById('app'))
 
-        this.button.element.addEventListener('click', () => {
-            this.textInput.value = ''
+        // Register the event listener on the internal element of the button
+        this.toggle.element.addEventListener('click', () => {
+            this.show = !this.show
         })
 
-        this.formToggler.element.addEventListener('click', () => {
-            this.showForm = !this.showForm
+        // Rather than calling rerender in the button event listener, I can just observe the value for changes
+        this.observables.show.onUpdate(() => {
             this.rerender()
         })
     }
 
     render() {
-        if (this.showForm) {
+        if (this.show) {
             return [
-                this.button,
-                this.textInput,
-                this.formToggler
+                new P('Hello There!'),
+                this.toggle,
+                new Div([new P('Hello again')]),
+                new SubComponent()
             ]
         } else {
             return [
-                this.formToggler
+                this.toggle
             ]
         }
     }
 }
 
-new Root()
+createElement(Root, 'x-test')
