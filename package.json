@@ -1,16 +1,15 @@
 {
   "name": "wecu",
   "description": "A library for building composable, reactive web components.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "exports": {
-    ".": "./src/"
+    ".": "./lib/"
   },
   "repository": "https://github.com/calebowens/web-element-composition-utility",
   "author": "Caleb Owens <Cocacola5010mc@Gmail.com>",
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.16.12",
     "@babel/plugin-transform-react-jsx": "^7.16.7",
@@ -22,9 +21,10 @@
     "typescript": "^4.5.5",
     "webpack": "^5.67.0",
     "webpack-stream": "^7.0.0"
-},
+  },
   "scripts": {
     "watch": "gulp watch",
-    "serve": "gulp serve"
+    "serve": "gulp serve",
+    "build": "tsc && yarn publish"
   }
 }
