@@ -1,4 +1,4 @@
-# Welcome to GitHub docs contributing guide <!-- omit in toc -->
+# Welcome to WECU contributing guide <!-- omit in toc -->
 
 Thank you for investing your time in contributing to our project! Any contribution you make will be reflected on [calebowens/web-element-composition-utility](https://github.com/calebowens/web-element-composition-utility) :sparkles:. 
 
