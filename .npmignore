@@ -1,6 +1,7 @@
 .build/
 dist/
 node_modules/
+src/
 .babelrc
 .gulpfile.js
 tsconfig.js
