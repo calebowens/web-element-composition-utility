@@ -1,14 +1,28 @@
-# web-element-composition-utility
+# Web Element Composition Utility
 
 So... I woke up one moring and thought "I don't like traditional web frameworks".
 
-Here is what I don't like
+Here is what I don't like:
 
 - You can't just have one or two components in HTML
 - You can't manipulate child component's state from its parent, without managing that part of state in the parent
 - You don't controll re-renders
 
 This library aims to fix those. Maybe it will or maybe there is good reason for some of the existing constraints.
+
+## About
+
+WECU is a library that lets you create web components and compose them together using an intuitive OOP system.
+
+It has been made and tested using typescript but should also work in javascript but your milage may vary.
+
+## Who This is For
+
+This library will be ideal for:
+
+- People who want to be able to manage each part of their web app
+- Still want convenience of being able to create and compose components
+- Would like to be able to program in a more traditional OOP way
 
 ## Examples
 
