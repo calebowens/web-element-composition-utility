@@ -1,12 +1,12 @@
 # Web Element Composition Utility
 
-So... I woke up one moring and thought "I don't like traditional web frameworks".
+So... I woke up one morning and thought "I don't like traditional web frameworks".
 
 Here is what I don't like:
 
 - You can't just have one or two components in HTML
 - You can't manipulate child component's state from its parent, without managing that part of state in the parent
-- You don't controll re-renders
+- You don't control re-renders
 
 This library aims to fix those. Maybe it will or maybe there is good reason for some of the existing constraints.
 
@@ -161,7 +161,7 @@ index.html
 </html>
 ```
 
-### Using an observable vairable
+### Using an observable variable
 
 main.ts
 
@@ -187,7 +187,7 @@ class Root extends Component {
       this.show = !this.show;
     });
 
-    // Rather than calling rerender in the button event listener, I can just
+    // Rather than calling rerender in the button event listener, I can
     //   observe the value for changes
     this.observables.show.onUpdate(() => {
       this.rerender();
