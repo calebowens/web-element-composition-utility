@@ -1,6 +1,6 @@
-import Component from '../component'
+import RootComponent from './rootComponent'
 
-export default class Bdo extends Component {
+export default class Bdo extends RootComponent {
     public element = document.createElement('bdo')
 
     constructor(public children?: string) {

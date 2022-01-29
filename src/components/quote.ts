@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Quote extends Component {
+export default class Quote extends RootComponent {
     public element = document.createElement('quote')
 
     constructor(public children?: string | Component[]) {

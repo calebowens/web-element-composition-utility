@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class FieldSet extends Component {
+export default class FieldSet extends RootComponent {
     public element = document.createElement('fieldset')
 
     constructor(public children?: string | Component[]) {

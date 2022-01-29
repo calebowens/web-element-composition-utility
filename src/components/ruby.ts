@@ -1,6 +1,6 @@
-import Component from '../component'
+import RootComponent from './rootComponent'
 
-export default class Ruby extends Component {
+export default class Ruby extends RootComponent {
     public element = document.createElement('ruby')
 
     constructor(public children?: string) {

@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class TFoot extends Component {
+export default class TFoot extends RootComponent {
     public element = document.createElement('tfoot')
 
     constructor(public children?: string | Component[]) {

@@ -15,7 +15,6 @@
     "@babel/core": "^7.16.12",
     "@babel/plugin-transform-react-jsx": "^7.16.7",
     "gulp": "^4.0.2",
-    "gulp-babel": "^8.0.0",
     "gulp-cli": "^2.3.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-webserver": "^0.9.1",

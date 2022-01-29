@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Label extends Component {
+export default class Label extends RootComponent {
     public element = document.createElement('label')
 
     constructor(public children?: string | Component[]) {

@@ -1,6 +1,6 @@
-import Component from '../component'
+import RootComponent from './rootComponent'
 
-export default class DFN extends Component {
+export default class DFN extends RootComponent {
     public element = document.createElement('dfn')
 
     constructor(public children?: string) {

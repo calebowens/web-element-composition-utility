@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Form extends Component {
+export default class Form extends RootComponent {
     public element = document.createElement('form')
 
     constructor(public children?: string | Component[]) {

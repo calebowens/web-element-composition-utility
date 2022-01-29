@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Select extends Component {
+export default class Select extends RootComponent {
     public element = document.createElement('select')
 
     constructor(public children?: string | Component[]) {

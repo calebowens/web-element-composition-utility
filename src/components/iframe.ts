@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class IFrame extends Component {
+export default class IFrame extends RootComponent {
     public element = document.createElement('iframe')
 
     constructor(public children?: string | Component[]) {

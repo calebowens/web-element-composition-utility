@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Nav extends Component {
+export default class Nav extends RootComponent {
     public element = document.createElement('nav')
 
     constructor(public children?: string | Component[]) {

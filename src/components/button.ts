@@ -1,7 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
-import { observable } from '../observable'
 
-export default class Button extends Component {
+export default class Button extends RootComponent {
     public element = document.createElement('button')
 
     constructor(public children?: string | Component[]) {

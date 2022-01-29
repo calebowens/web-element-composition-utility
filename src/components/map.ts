@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Map extends Component {
+export default class Map extends RootComponent {
     public element = document.createElement('map')
 
     constructor(public children?: string | Component[]) {

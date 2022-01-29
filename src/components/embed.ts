@@ -1,6 +1,6 @@
-import Component from '../component'
+import RootComponent from './rootComponent'
 
-export default class Embed extends Component {
+export default class Embed extends RootComponent {
     public element = document.createElement('embed')
 
     constructor() {

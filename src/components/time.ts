@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Time extends Component {
+export default class Time extends RootComponent {
     public element = document.createElement('time')
 
     constructor(public children?: string | Component[]) {

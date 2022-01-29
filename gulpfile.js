@@ -2,7 +2,6 @@ const { watch, src, dest, series } = require('gulp')
 const typescript = require('gulp-typescript')
 const webpack = require('webpack-stream')
 const webserver = require('gulp-webserver')
-const babel = require('gulp-babel')
 
 console.log(require('./tsconfig.json'))
 
@@ -19,7 +18,6 @@ const project = typescript.createProject(require('./tsconfig.json').compilerOpti
 function compileTS() {
     return src(['./src/**/*.ts', './src/**/*.tsx'])
         .pipe(project())
-        .pipe(babel(require('./.babelrc.json')))
         .pipe(dest('.build'))
 }
 

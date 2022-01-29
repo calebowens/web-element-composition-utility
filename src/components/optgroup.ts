@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class OptGroup extends Component {
+export default class OptGroup extends RootComponent {
     public element = document.createElement('optgroup')
 
     constructor(public children?: string | Component[]) {

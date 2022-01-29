@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Table extends Component {
+export default class Table extends RootComponent {
     public element = document.createElement('table')
 
     constructor(public children?: string | Component[]) {

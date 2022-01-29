@@ -1,6 +1,6 @@
-import Component from '../component'
+import RootComponent from './rootComponent'
 
-export default class Progress extends Component {
+export default class Progress extends RootComponent {
     public element = document.createElement('progress')
 
     constructor(public children?: string) {

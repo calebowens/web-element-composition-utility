@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Canvas extends Component {
+export default class Canvas extends RootComponent {
     public element = document.createElement('canvas')
 
     constructor(public children?: string | Component[]) {

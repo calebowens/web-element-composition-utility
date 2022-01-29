@@ -1,6 +1,6 @@
-import Component from '../component'
+import RootComponent from './rootComponent'
 
-export default class H6 extends Component {
+export default class H6 extends RootComponent {
     public element = document.createElement('h6')
 
     constructor(public children?: string) {

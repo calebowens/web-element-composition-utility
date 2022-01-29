@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Del extends Component {
+export default class Del extends RootComponent {
     public element = document.createElement('del')
 
     constructor(public children?: string | Component[]) {

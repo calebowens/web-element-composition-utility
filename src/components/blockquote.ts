@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class BlockQuote extends Component {
+export default class BlockQuote extends RootComponent {
     public element = document.createElement('blockquote')
 
     constructor(public children?: string | Component[]) {

@@ -1,6 +1,6 @@
-import Component from '../component'
+import RootComponent from './rootComponent'
 
-export default class Portal extends Component {
+export default class Portal extends RootComponent {
     public element = document.createElement('portal')
 
     constructor(public children?: string){

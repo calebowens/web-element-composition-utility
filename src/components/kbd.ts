@@ -1,6 +1,6 @@
-import Component from '../component'
+import RootComponent from './rootComponent'
 
-export default class KBD extends Component {
+export default class KBD extends RootComponent {
     public element = document.createElement('kbd')
 
     constructor(public children?: string) {

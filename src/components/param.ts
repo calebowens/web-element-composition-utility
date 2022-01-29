@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Param extends Component {
+export default class Param extends RootComponent {
     public element = document.createElement('param')
 
     constructor(public children?: string | Component[]) {

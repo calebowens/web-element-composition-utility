@@ -1,6 +1,6 @@
-import Component from '../component'
+import RootComponent from './rootComponent'
 
-export default class Stamp extends Component {
+export default class Stamp extends RootComponent {
     public element = document.createElement('stamp')
 
     constructor(public children?: string) {

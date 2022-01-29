@@ -1,6 +1,6 @@
-import Component from '../component'
+import RootComponent from './rootComponent'
 
-export default class Meter extends Component {
+export default class Meter extends RootComponent {
     public element = document.createElement('meter')
 
     constructor(public children?: string) {

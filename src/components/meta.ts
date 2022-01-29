@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Meta extends Component {
+export default class Meta extends RootComponent {
     public element = document.createElement('meta')
 
     constructor(public children?: string | Component[]) {

@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Code extends Component {
+export default class Code extends RootComponent {
     public element = document.createElement('code')
 
     constructor(public children?: string | Component[]) {

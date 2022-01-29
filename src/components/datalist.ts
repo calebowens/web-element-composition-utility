@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class DataList extends Component {
+export default class DataList extends RootComponent {
     public element = document.createElement('datalist')
 
     constructor(public children?: string | Component[]) {

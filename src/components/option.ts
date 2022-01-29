@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Option extends Component {
+export default class Option extends RootComponent {
     public element = document.createElement('option')
 
     constructor(public children?: string | Component[]) {

@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Span extends Component {
+export default class Span extends RootComponent {
     public element = document.createElement('span')
 
     constructor(public children?: string | Component[]) {

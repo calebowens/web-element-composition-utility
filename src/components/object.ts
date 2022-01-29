@@ -1,6 +1,6 @@
-import Component from '../component'
+import RootComponent from './rootComponent'
 
-export default class Object extends Component {
+export default class Object extends RootComponent {
     public element = document.createElement('object')
 
     constructor() {

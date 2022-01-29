@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Area extends Component {
+export default class Area extends RootComponent {
     public element = document.createElement('area')
 
     constructor(public children?: string | Component[]) {

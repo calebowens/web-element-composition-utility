@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class NoScript extends Component {
+export default class NoScript extends RootComponent {
     public element = document.createElement('noscript')
 
     constructor(public children?: string | Component[]) {

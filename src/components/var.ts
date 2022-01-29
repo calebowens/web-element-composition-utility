@@ -1,6 +1,6 @@
-import Component from '../component'
+import RootComponent from './rootComponent'
 
-export default class Var extends Component {
+export default class Var extends RootComponent {
     public element = document.createElement('var')
 
     constructor(public children?: string) {

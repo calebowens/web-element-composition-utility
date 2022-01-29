@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class Ins extends Component {
+export default class Ins extends RootComponent {
     public element = document.createElement('ins')
 
     constructor(public children?: string | Component[]) {

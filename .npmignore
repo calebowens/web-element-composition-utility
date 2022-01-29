@@ -5,3 +5,6 @@ src/
 .babelrc
 .gulpfile.js
 tsconfig.js
+src/main.ts
+lib/main.js
+lib/main.d.ts

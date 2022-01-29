@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class UL extends Component {
+export default class UL extends RootComponent {
     public element = document.createElement('ul')
 
     constructor(public children?: string | Component[]) {

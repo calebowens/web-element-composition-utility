@@ -1,6 +1,7 @@
+import RootComponent from './rootComponent'
 import Component from '../component'
 
-export default class TBody extends Component {
+export default class TBody extends RootComponent {
     public element = document.createElement('tbody')
 
     constructor(public children?: string | Component[]) {

@@ -1,6 +1,6 @@
-import Component from '../component'
+import RootComponent from './rootComponent'
 
-export default class Cite extends Component {
+export default class Cite extends RootComponent {
     public element = document.createElement('cite')
 
     constructor(public children?: string) {
