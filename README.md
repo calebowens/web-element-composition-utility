@@ -145,3 +145,28 @@ class Root extends Component {
 
 createElement(Root, "x-root");
 ```
+
+### Styling the Component
+
+```ts
+import Component, { createElement } from "weca/component";
+import P from "weca/components/p";
+
+class Root extends Component {
+  render() {
+    this.styles = `
+      :host {
+        width: 100%;
+      }
+
+      p {
+        color: green;
+      }
+    `;
+
+    return [new P("Hello World!")];
+  }
+}
+
+createElement(Root, "x-root");
+```

@@ -7,49 +7,72 @@ interface Observables {
 export default class Component {
     public observables: Observables
     public attributes: {}
-    private self?: Element
-    private parent?: Element
+    public styles?: string
+    private self?: HTMLElement
+    private parent?: HTMLElement
+    private shadowDom?: ShadowRoot
+    public _isWebComponent: boolean = false
 
     rerender() {
-        this.init(this.parent)
+        this.init()
     }
 
-    init(parent: Element, _isWebComponent: boolean = false) {
+    init(parent?: HTMLElement) {
         const components = this.render()
 
-        if (this.parent && this.self) {
-            this.parent.removeChild(this.self)
-
-            this.self = undefined
+        if (parent) {
+            this.parent = parent
         }
 
-        this.parent = parent
+        if (this.parent && this.self) {
+            if (this.shadowDom) {
+                this.shadowDom.innerHTML = ''
+            } else if (this.self.parentElement) {
+                this.self.parentElement.removeChild(this.self)
+
+                this.self = undefined
+            }
+        }
 
         if (Array.isArray(components)) {
-            if (_isWebComponent) {
+            if (this._isWebComponent) {
                 this.self = this.parent
             } else {
                 this.self = document.createElement('div')
+                this.parent.appendChild(this.self)
+            }
+
+            if (!this.shadowDom) {
+                this.shadowDom = this.self.attachShadow({mode: 'open'})
             }
 
             for (const key in this.attributes) {
                 this.self.setAttribute(key, this.attributes[key])
             }
+
             components.forEach((component) => {
-                component.init(this.self)
+                component.init(this.shadowDom as unknown as HTMLElement)
             })
-            this.parent.appendChild(this.self)
+
+            if (this.styles) {
+                const styles = document.createElement('style')
+                styles.innerHTML = this.styles
+
+                this.shadowDom.appendChild(styles)
+            }
         } else if (components instanceof Component) {
             components.init(this.parent)
             this.self = components.self
+            this.self.style.cssText = this.styles
             this.parent.appendChild(this.self)
         } else {
             this.self = components
+            this.self.style.cssText = this.styles
             this.parent.appendChild(this.self)
         }
     }
 
-    render(): Component[] | Component | Element {
+    render(): Component[] | Component | HTMLElement {
         return []
     }
 }
@@ -61,7 +84,8 @@ export function createElement(component: { new (): Component }, name: string) {
         constructor() {
             super()
             this.root = new component()
-            this.root.init(this, true)
+            this.root._isWebComponent = true
+            this.root.init(this)
         }
     }
 

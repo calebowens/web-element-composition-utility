@@ -28,7 +28,6 @@ export function observable<T>() {
         const observable = new Observable<T>(target[memberName])
 
         Object.defineProperty(target, memberName, { get: () => observable.value, set: (newValue: T) => observable.value = newValue })
-        console.log(target)
 
         target.observables ||= {}
         Object.defineProperty(target.observables, memberName, { get: () => observable })
