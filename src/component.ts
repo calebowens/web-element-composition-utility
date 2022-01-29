@@ -6,14 +6,15 @@ interface Observables {
 
 export default class Component {
     public observables: Observables
+    public attributes: {}
     private self?: Element
-    private parent?: Element | ShadowRoot
+    private parent?: Element
 
     rerender() {
         this.init(this.parent)
     }
 
-    init(parent: Element | ShadowRoot) {
+    init(parent: Element, _isWebComponent: boolean = false) {
         const components = this.render()
 
         if (this.parent && this.self) {
@@ -25,7 +26,15 @@ export default class Component {
         this.parent = parent
 
         if (Array.isArray(components)) {
-            this.self = document.createElement('div')
+            if (_isWebComponent) {
+                this.self = this.parent
+            } else {
+                this.self = document.createElement('div')
+            }
+
+            for (const key in this.attributes) {
+                this.self.setAttribute(key, this.attributes[key])
+            }
             components.forEach((component) => {
                 component.init(this.self)
             })
@@ -52,7 +61,7 @@ export function createElement(component: { new (): Component }, name: string) {
         constructor() {
             super()
             this.root = new component()
-            this.root.init(this)
+            this.root.init(this, true)
         }
     }
 
