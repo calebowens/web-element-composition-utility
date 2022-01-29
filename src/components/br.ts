@@ -1,6 +1,6 @@
-import RootComponent from './rootComponent'
+import { RootComponent } from './rootComponent'
 
-export default class BR extends RootComponent {
+export class BR extends RootComponent {
     public element = document.createElement('br')
 
     constructor() {

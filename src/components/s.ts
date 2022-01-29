@@ -1,6 +1,6 @@
-import RootComponent from './rootComponent'
+import { RootComponent } from './rootComponent'
 
-export default class S extends RootComponent {
+export class S extends RootComponent {
     public element = document.createElement('s')
 
     constructor(public children?: string) {
@@ -8,7 +8,7 @@ export default class S extends RootComponent {
     }
 
     render() {
-        this.element.innerText = this.children
+        this.element.innerText = this.children ?? ''
 
         return this.element
     }

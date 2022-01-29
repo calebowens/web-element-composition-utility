@@ -76,8 +76,7 @@ module.exports = {
 main.ts
 
 ```ts
-import Component from "wecu/component";
-import P from "wecu/components/p";
+import { Component, P } from "wecu";
 
 class Root extends Component {
   constructor() {
@@ -114,9 +113,7 @@ index.html
 main.ts
 
 ```ts
-import Component from "wecu/component";
-import P from "wecu/components/p";
-import Button from "wecu/components/button";
+import { Component, P, Button } from "wecu/component";
 
 class Root extends Component {
   private toggle = new Button("Toggle");
@@ -164,10 +161,7 @@ index.html
 main.ts
 
 ```ts
-import Component from "wecu/component";
-import { observable } from "wecu/observable";
-import P from "wecu/components/p";
-import Button from "wecu/components/button";
+import { Component, observable, P, Button } from "wecu/component";
 
 class Root extends Component {
   private toggle = new Button("Toggle");
@@ -224,8 +218,7 @@ index.html
 main.ts
 
 ```ts
-import Component, { createElement } from "wecu/component";
-import P from "wecu/components/p";
+import { Component, createElement, P } from "wecu/component";
 
 class Root extends Component {
   constructor() {
@@ -265,8 +258,7 @@ index.html
 main.ts
 
 ```ts
-import Component, { createElement } from "wecu/component";
-import P from "wecu/components/p";
+import { Component, createElement, P } from "wecu/component";
 
 class Root extends Component {
   render() {

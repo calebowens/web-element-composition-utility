@@ -1,6 +1,6 @@
-import RootComponent from './rootComponent'
+import { RootComponent } from './rootComponent'
 
-export default class Abbr extends RootComponent {
+export class Abbr extends RootComponent {
     public element = document.createElement('abbr')
 
     constructor(public children?: string) {
@@ -8,7 +8,7 @@ export default class Abbr extends RootComponent {
     }
 
     render() {
-        this.element.innerText = this.children
+        this.element.innerText = this.children ?? ''
 
         return this.element
     }

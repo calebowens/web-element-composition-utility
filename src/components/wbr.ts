@@ -1,6 +1,6 @@
-import RootComponent from './rootComponent'
+import { RootComponent } from './rootComponent'
 
-export default class Wbr extends RootComponent {
+export class Wbr extends RootComponent {
     public element = document.createElement('wbr')
 
     constructor() {

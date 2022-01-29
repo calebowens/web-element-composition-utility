@@ -1,7 +1,7 @@
-import RootComponent from './rootComponent'
-import Component from '../component'
+import { RootComponent } from './rootComponent'
+import { Component } from '../component'
 
-export default class Audio extends RootComponent {
+export class Audio extends RootComponent {
     public element = document.createElement('audio')
 
     constructor() {

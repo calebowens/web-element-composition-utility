@@ -1,7 +1,7 @@
-import RootComponent from './rootComponent'
-import Component from '../component'
+import { RootComponent } from './rootComponent'
+import { Component } from '../component'
 
-export default class P extends RootComponent {
+export class P extends RootComponent {
     public element = document.createElement('p')
 
     constructor(public children?: string | Component[]) {
@@ -14,7 +14,7 @@ export default class P extends RootComponent {
                 component.init(this.element)
             })
         } else {
-            this.element.innerText = this.children
+            this.element.innerText = this.children ?? ''
         }
 
         return this.element

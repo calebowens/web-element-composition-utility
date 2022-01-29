@@ -1,5 +1,6 @@
-import Component from '../component'
+import { Component } from '../component'
 
-export default class RootComponent extends Component {
+export class RootComponent extends Component {
+    // @ts-ignore
     public element: HTMLElement
 }

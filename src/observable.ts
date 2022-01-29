@@ -1,4 +1,4 @@
-import Component from "./component"
+import { Component } from "./component"
 
 export class Observable<T> {
     callbacks: ((value: T) => void)[] = []
@@ -18,13 +18,14 @@ export class Observable<T> {
         return this._value
     }
 
-    onUpdate(cb) {
+    onUpdate(cb: (value: T) => void) {
         this.callbacks.push(cb)
     }
 }
 
 export function observable<T>() {
     return function (target: Component, memberName: string) {
+        // @ts-ignore
         const observable = new Observable<T>(target[memberName])
 
         Object.defineProperty(target, memberName, { get: () => observable.value, set: (newValue: T) => observable.value = newValue })

@@ -1,7 +1,7 @@
-import RootComponent from './rootComponent'
-import Component from '../component'
+import { RootComponent } from './rootComponent'
+import { Component } from '../component'
 
-export default class Track extends RootComponent {
+export class Track extends RootComponent {
     public element = document.createElement('track')
 
     constructor() {

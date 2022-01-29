@@ -4,9 +4,13 @@ interface Observables {
     [name: string]: Observable<any>
 }
 
-export default class Component {
-    public observables: Observables
-    public attributes: {}
+interface Attributes {
+    [name: string]: string
+}
+
+export class Component {
+    public observables: Observables = {}
+    public attributes: Attributes = {}
     public styles?: string
     private self?: HTMLElement
     private parent?: HTMLElement
@@ -39,15 +43,15 @@ export default class Component {
                 this.self = this.parent
             } else {
                 this.self = document.createElement('div')
-                this.parent.appendChild(this.self)
+                this.parent?.appendChild(this.self)
             }
 
             if (!this.shadowDom) {
-                this.shadowDom = this.self.attachShadow({mode: 'open'})
+                this.shadowDom = this.self?.attachShadow({mode: 'open'})
             }
 
             for (const key in this.attributes) {
-                this.self.setAttribute(key, this.attributes[key])
+                this.self?.setAttribute(key, this.attributes[key])
             }
 
             components.forEach((component) => {
@@ -58,17 +62,21 @@ export default class Component {
                 const styles = document.createElement('style')
                 styles.innerHTML = this.styles
 
-                this.shadowDom.appendChild(styles)
+                this.shadowDom?.appendChild(styles)
             }
         } else if (components instanceof Component) {
             components.init(this.parent)
             this.self = components.self
-            this.self.style.cssText = this.styles
-            this.parent.appendChild(this.self)
+            if (this.self && this.styles && this.parent) {
+                this.self.style.cssText = this.styles
+                this.parent.appendChild(this.self)
+            }
         } else {
             this.self = components
-            this.self.style.cssText = this.styles
-            this.parent.appendChild(this.self)
+            if (this.self && this.styles && this.parent) {
+                this.self.style.cssText = this.styles
+                this.parent.appendChild(this.self)
+            }
         }
     }
 
