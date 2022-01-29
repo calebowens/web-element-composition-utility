@@ -234,9 +234,9 @@ class Root extends Component {
   constructor() {
     super();
 
-    // As we're registering it as a web component, I dont need to call
+    // As we're registering it as a web component, I don't need to call
     //   init().
-    // We could remove the constructor as we're instanciating any variables
+    // We could remove the constructor as we're instantiating any variables
     //   in this instance.
   }
 
