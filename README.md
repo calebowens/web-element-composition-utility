@@ -14,7 +14,7 @@ This library aims to fix those. Maybe it will or maybe there is good reason for 
 
 WECU is a library that lets you create web components and compose them together using an intuitive OOP system.
 
-It has been made and tested using typescript but should also work in javascript but your milage may vary.
+WECU is designed to be run in the browser and does make use of some typescript decorators so to make full advantage of those, I recommend using typescript, but they are optional, so you can use plain JS if you fancy.
 
 ## Who This is For
 
@@ -26,11 +26,58 @@ This library will be ideal for:
 
 ## Examples
 
+These examples have been written with the following setup in mind:
+
+1. Install typescript
+
+- Run `yarn add typescript`
+- Add `tsconfig.json`
+
+```json
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "outDir": "./.build",
+    "esModuleInterop": true,
+    "declaration": true
+  },
+  "include": ["./src"]
+}
+```
+
+2. Install webpack
+
+- Run `yarn add webpack webpack-cli`
+- Add `webpack.config.js`
+
+```js
+const path = require("path");
+
+module.exports = {
+  entry: "./.build/main.js",
+  output: {
+    path: path.resolve(__dirname, "public"),
+    filename: "main.js",
+  },
+  mode: "development",
+};
+```
+
+3. Place `main.ts` in `src/`
+4. Place `index.html` in `public/`
+5. Compile typescript `yarn tsc`
+6. Run webpack `yarn webpack`
+7. Visit your `index.html`
+
 ### Root of an app
 
+main.ts
+
 ```ts
-import Component from "weca/component";
-import P from "weca/components/p";
+import Component from "wecu/component";
+import P from "wecu/components/p";
 
 class Root extends Component {
   constructor() {
@@ -47,12 +94,30 @@ class Root extends Component {
 new Root();
 ```
 
+index.html
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- You will need to use a webpack-->
+    <script src="main.js" async defer></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
+```
+
 ### Conditional Rendering
 
+main.ts
+
 ```ts
-import Component from "weca/component";
-import P from "weca/components/p";
-import Button from "weca/components/button";
+import Component from "wecu/component";
+import P from "wecu/components/p";
+import Button from "wecu/components/button";
 
 class Root extends Component {
   private toggle = new Button("Toggle");
@@ -60,20 +125,17 @@ class Root extends Component {
 
   constructor() {
     super();
-    this.init(document.getElementById("app"));
 
-    // Register the event listener on the internal element of the button
+    this.init(document.getElementById("app")); // Register the event listener on the internal element of the button
+
     this.toggle.element.addEventListener("click", () => {
-      this.show = !this.show;
-
-      // We've modified state so we need to re-render the button
+      this.show = !this.show; // We've modified state so we need to re-render the button
       this.rerender();
     });
   }
-
   render() {
     if (this.show) {
-      return [new P("Hello There!"), this.toggle];
+      return [new P("HelloThere!"), this.toggle];
     } else {
       return [this.toggle];
     }
@@ -83,13 +145,31 @@ class Root extends Component {
 new Root();
 ```
 
+index.html
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- You will need to use a webpack-->
+    <script src="main.js" async defer></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
+```
+
 ### Using an observable vairable
 
+main.ts
+
 ```ts
-import Component from "weca/component";
-import { observable } from "weca/observable";
-import P from "weca/components/p";
-import Button from "weca/components/button";
+import Component from "wecu/component";
+import { observable } from "wecu/observable";
+import P from "wecu/components/p";
+import Button from "wecu/components/button";
 
 class Root extends Component {
   private toggle = new Button("Toggle");
@@ -99,6 +179,7 @@ class Root extends Component {
 
   constructor() {
     super();
+
     this.init(document.getElementById("app"));
 
     // Register the event listener on the internal element of the button
@@ -106,7 +187,8 @@ class Root extends Component {
       this.show = !this.show;
     });
 
-    // Rather than calling rerender in the button event listener, I can just observe the value for changes
+    // Rather than calling rerender in the button event listener, I can just
+    //   observe the value for changes
     this.observables.show.onUpdate(() => {
       this.rerender();
     });
@@ -124,18 +206,38 @@ class Root extends Component {
 new Root();
 ```
 
+index.html
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- You will need to use a webpack-->
+    <script src="main.js" async defer></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
+```
+
 ### Registering a Component as a Web Component
 
+main.ts
+
 ```ts
-import Component, { createElement } from "weca/component";
-import P from "weca/components/p";
+import Component, { createElement } from "wecu/component";
+import P from "wecu/components/p";
 
 class Root extends Component {
   constructor() {
     super();
 
-    // As we're registering it as a web component, I dont need to call init.
-    // We could just leave off the constructor as we're not using it in this instance
+    // As we're registering it as a web component, I dont need to call
+    //   init().
+    // We could remove the constructor as we're instanciating any variables
+    //   in this instance.
   }
 
   render() {
@@ -146,11 +248,29 @@ class Root extends Component {
 createElement(Root, "x-root");
 ```
 
+index.html
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- you will need to use a webpack-->
+    <script src="main.js" async defer></script>
+  </head>
+
+  <body>
+    <x-root></x-root>
+  </body>
+</html>
+```
+
 ### Styling the Component
 
+main.ts
+
 ```ts
-import Component, { createElement } from "weca/component";
-import P from "weca/components/p";
+import Component, { createElement } from "wecu/component";
+import P from "wecu/components/p";
 
 class Root extends Component {
   render() {
@@ -169,4 +289,20 @@ class Root extends Component {
 }
 
 createElement(Root, "x-root");
+```
+
+index.html
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- you will need to use a webpack-->
+    <script src="main.js" async defer></script>
+  </head>
+
+  <body>
+    <x-root></x-root>
+  </body>
+</html>
 ```
