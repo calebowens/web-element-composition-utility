@@ -100,7 +100,6 @@ index.html
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- You will need to use a webpack-->
     <script src="main.js" async defer></script>
   </head>
 
@@ -151,7 +150,6 @@ index.html
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- You will need to use a webpack-->
     <script src="main.js" async defer></script>
   </head>
 
@@ -212,7 +210,6 @@ index.html
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- You will need to use a webpack-->
     <script src="main.js" async defer></script>
   </head>
 
@@ -254,7 +251,6 @@ index.html
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- you will need to use a webpack-->
     <script src="main.js" async defer></script>
   </head>
 
@@ -297,7 +293,6 @@ index.html
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- you will need to use a webpack-->
     <script src="main.js" async defer></script>
   </head>
 
