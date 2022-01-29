@@ -7,6 +7,11 @@
     "./observable": "./lib/observable.js",
     "./components/*": "./lib/components/*"
   },
+  "files": [
+    "./lib/**/*.d.ts",
+    "./lib/component.d.ts"
+  ],
+  "types": "./lib/component.d.ts",
   "repository": "https://github.com/calebowens/web-element-composition-utility",
   "author": "Caleb Owens <Cocacola5010mc@Gmail.com>",
   "license": "MIT",
