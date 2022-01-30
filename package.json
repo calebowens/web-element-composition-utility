@@ -11,6 +11,7 @@
   "devDependencies": {
     "@babel/core": "^7.16.12",
     "@babel/plugin-transform-react-jsx": "^7.16.7",
+    "denoify": "^0.11.0",
     "gulp": "^4.0.2",
     "gulp-cli": "^2.3.0",
     "gulp-typescript": "^6.0.0-alpha.1",
@@ -23,5 +24,9 @@
     "watch": "gulp watch",
     "serve": "gulp serve",
     "build": "tsc && yarn publish"
+  },
+  "denoify": {
+    "index": "src/index.ts",
+    "out": "deno_dist"
   }
 }

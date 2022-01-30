@@ -1,5 +1,6 @@
 .build/
 dist/
+deno_dist/
 node_modules/
 src/
 .babelrc
