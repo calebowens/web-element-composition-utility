@@ -36,12 +36,13 @@ These examples have been written with the following setup in mind:
 ```json
 {
   "compilerOptions": {
+    "outDir": "./public/",
+    "noImplicitAny": true,
     "target": "es2015",
-    "experimentalDecorators": true,
+    "allowJs": true,
     "moduleResolution": "node",
-    "outDir": "./.build",
-    "esModuleInterop": true,
-    "declaration": true
+    "experimentalDecorators": true,
+    "strict": true
   },
   "include": ["./src"]
 }
@@ -49,19 +50,36 @@ These examples have been written with the following setup in mind:
 
 2. Install webpack
 
-- Run `yarn add webpack webpack-cli`
+- Run `yarn add webpack webpack-cli ts-loader`
 - Add `webpack.config.js`
 
 ```js
 const path = require("path");
 
 module.exports = {
-  entry: "./.build/main.js",
+  mode: "development",
+  watch: true,
+
+  entry: "./src/main.ts",
+
+  module: {
+    rules: [
+      {
+        test: /\.ts?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
+    ],
+  },
+
+  resolve: {
+    extensions: [".ts", ".js"],
+  },
+
   output: {
     path: path.resolve(__dirname, "public"),
     filename: "main.js",
   },
-  mode: "development",
 };
 ```
 
