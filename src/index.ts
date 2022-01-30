@@ -1,5 +1,3 @@
-// created from 'create-ts-index'
-
-export * from './components';
+export * from './components/index';
 export * from './component';
 export * from './observable';
