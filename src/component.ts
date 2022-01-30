@@ -67,14 +67,18 @@ export class Component {
         } else if (components instanceof Component) {
             components.init(this.parent)
             this.self = components.self
-            if (this.self && this.styles && this.parent) {
+            if (this.self && this.styles) {
                 this.self.style.cssText = this.styles
+            }
+            if (this.parent && this.self) {
                 this.parent.appendChild(this.self)
             }
         } else {
             this.self = components
-            if (this.self && this.styles && this.parent) {
+            if (this.self && this.styles) {
                 this.self.style.cssText = this.styles
+            }
+            if (this.parent) {
                 this.parent.appendChild(this.self)
             }
         }
