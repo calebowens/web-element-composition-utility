@@ -179,13 +179,12 @@ index.html
 main.ts
 
 ```ts
-import { Component, observable, P, Button } from "wecu/component";
+import { Component, Observable, P, Button } from "wecu/component";
 
 class Root extends Component {
   private toggle = new Button("Toggle");
 
-  @observable()
-  private show = true;
+  private show = new Observable(true);
 
   constructor() {
     super();
@@ -194,12 +193,12 @@ class Root extends Component {
 
     // Register the event listener on the internal element of the button
     this.toggle.element.addEventListener("click", () => {
-      this.show = !this.show;
+      this.show.value = !this.show.value;
     });
 
     // Rather than calling rerender in the button event listener, I can
     //   observe the value for changes
-    this.observables.show.onUpdate(() => {
+    this.show.onUpdate(() => {
       this.rerender();
     });
   }
@@ -244,8 +243,8 @@ class Root extends Component {
 
     // As we're registering it as a web component, I don't need to call
     //   init().
-    // We could remove the constructor as we're instantiating any variables
-    //   in this instance.
+    // We could remove the constructor as we're not instantiating any variables
+    //   here.
   }
 
   render() {
@@ -291,6 +290,74 @@ class Root extends Component {
     `;
 
     return [new P("Hello World!")];
+  }
+}
+
+createElement(Root, "x-root");
+```
+
+index.html
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="main.js" async defer></script>
+  </head>
+
+  <body>
+    <x-root></x-root>
+  </body>
+</html>
+```
+
+### Using an Emitter
+
+main.ts
+
+```ts
+import { Button, Component, Input, Emitter } from "wecu";
+
+export default class CreateTask extends Component {
+  private addTask = new Button("Create Task");
+  private input = new Input();
+
+  public taskEmitter = new Emitter<string>();
+
+  constructor() {
+    super();
+
+    this.addTask.element.addEventListener("click", () => {
+      this.taskEmitter.emit(this.input.element.value);
+
+      this.input.element.value = "";
+    });
+  }
+
+  render() {
+    return [this.input, this.addTask];
+  }
+}
+
+import { Component, createElement, P } from "wecu";
+import CreateTask from "./createTask";
+
+export default class Root extends Component {
+  private tasks: P[] = [];
+  private taskCreator = new CreateTask();
+
+  constructor() {
+    super();
+
+    this.taskCreator.taskEmitter.onEmit((title) => {
+      this.tasks.push(new P(title));
+
+      this.rerender();
+    });
+  }
+
+  render() {
+    return [this.taskCreator, ...this.tasks];
   }
 }
 

@@ -21,7 +21,7 @@ export class Component {
         this.init()
     }
 
-    init(parent?: HTMLElement) {
+    init(parent?: HTMLElement, fragment?: DocumentFragment) {
         const components = this.render()
 
         // If there is a parent passed in, assign it to this.parent
@@ -50,7 +50,8 @@ export class Component {
             // Otherwise, we want to create a div to contain the elements
             } else {
                 this.self = document.createElement('div')
-                this.parent?.appendChild(this.self)
+
+                fragment?.appendChild(this.self) ?? this.parent?.appendChild(this.self)
             }
 
             // We want to create a new dom for each div, and once for the web component case
@@ -63,9 +64,11 @@ export class Component {
                 this.self?.setAttribute(key, this.attributes[key])
             }
 
+            const _fragment = document.createDocumentFragment()
+
             // Render children
             components.forEach((component) => {
-                component.init(this.shadowDom as unknown as HTMLElement)
+                component.init(this.shadowDom as unknown as HTMLElement, _fragment)
             })
 
             // Add a style component
@@ -73,8 +76,10 @@ export class Component {
                 const styles = document.createElement('style')
                 styles.innerHTML = this.styles
 
-                this.shadowDom?.appendChild(styles)
+                _fragment.appendChild(styles)
             }
+
+            this.shadowDom?.appendChild(_fragment)
         
         // For returning a single component
         } else if (components instanceof Component) {
@@ -87,7 +92,7 @@ export class Component {
                 this.self.style.cssText = this.styles
             }
             if (this.parent && this.self) {
-                this.parent.appendChild(this.self)
+                fragment?.appendChild(this.self) ?? this.parent.appendChild(this.self)
             }
         } else {
             this.self = components
@@ -95,7 +100,7 @@ export class Component {
                 this.self.style.cssText = this.styles
             }
             if (this.parent) {
-                this.parent.appendChild(this.self)
+                fragment?.appendChild(this.self) ?? this.parent.appendChild(this.self)
             }
         }
     }
