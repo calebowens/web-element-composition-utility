@@ -32,7 +32,7 @@ I've written a demo project using webpack and typescript that I encourage you to
 
 For usage with deno you can use the import link `https://deno.land/x/wecu@<VERSION_NUMBER>/deno_dist/index.ts`.
 
-For bundling deno you'll need to use the libs "dom" and "es2015".
+For bundling deno you'll need to use the enable libs "dom" and "es2015" in your deno.json.
 
 ## Examples
 
