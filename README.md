@@ -24,9 +24,19 @@ This library will be ideal for:
 - Still want convenience of being able to create and compose components
 - Would like to be able to program in a more traditional OOP way
 
+## Demo Projects
+
+I've written a demo project using webpack and typescript that I encourage you to check out at [https://github.com/calebowens/wecu-example](https://github.com/calebowens/wecu-example)
+
+## Using Deno as Bundler
+
+For usage with deno you can use the import link `https://deno.land/x/wecu@<VERSION_NUMBER>/deno_dist/index.ts`.
+
+For bundling deno you'll need to use the libs "dom" and "es2015".
+
 ## Examples
 
-These examples have been written with the following setup in mind:
+These examples have been written with the following webpack based setup in mind:
 
 1. Install typescript
 
@@ -316,7 +326,7 @@ index.html
 main.ts
 
 ```ts
-import { Button, Component, Input, Emitter } from "wecu";
+import { Button, Component, Input, Emitter, P } from "wecu";
 
 export default class CreateTask extends Component {
   private addTask = new Button("Create Task");
@@ -338,9 +348,6 @@ export default class CreateTask extends Component {
     return [this.input, this.addTask];
   }
 }
-
-import { Component, createElement, P } from "wecu";
-import CreateTask from "./createTask";
 
 export default class Root extends Component {
   private tasks: P[] = [];
