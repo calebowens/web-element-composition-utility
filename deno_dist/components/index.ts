@@ -40,7 +40,7 @@ export * from './h4.ts';
 export * from './h5.ts';
 export * from './h6.ts';
 export * from './head.ts';
-export * from './heading.ts';
+export * from './header.ts';
 export * from './hr.ts';
 export * from './i.ts';
 export * from './iframe.ts';
@@ -90,6 +90,7 @@ export * from './sup.ts';
 export * from './table.ts';
 export * from './tbody.ts';
 export * from './td.ts';
+export * from './textarea.ts'
 export * from './tfoot.ts';
 export * from './th.ts';
 export * from './thead.ts';
