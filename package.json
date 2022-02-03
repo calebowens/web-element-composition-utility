@@ -5,20 +5,12 @@
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "repository": "https://github.com/calebowens/web-element-composition-utility",
-  "author": "Caleb Owens <Cocacola5010mc@Gmail.com>",
+  "author": "Caleb Owens <hello@calebowens.com>",
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.16.12",
-    "@babel/plugin-transform-react-jsx": "^7.16.7",
     "denoify": "^0.11.0",
-    "gulp": "^4.0.2",
-    "gulp-cli": "^2.3.0",
-    "gulp-typescript": "^6.0.0-alpha.1",
-    "gulp-webserver": "^0.9.1",
-    "typescript": "^4.5.5",
-    "webpack": "^5.67.0",
-    "webpack-stream": "^7.0.0"
+    "typescript": "^4.5.5"
   },
   "scripts": {
     "watch": "gulp watch",
