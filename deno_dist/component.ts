@@ -15,6 +15,7 @@ export class Component {
     private self?: HTMLElement
     private parent?: HTMLElement
     private shadowDom?: ShadowRoot
+    private nextNeighbor: Element | null = null
     public _isWebComponent: boolean = false
 
     rerender() {
@@ -35,6 +36,7 @@ export class Component {
                 this.shadowDom.innerHTML = ''
             // Otherwise, if the parent is still intact or containing self, remove it from the parent
             } else if (this.parent.contains(this.self)) {
+                this.nextNeighbor = this.self.nextElementSibling
                 this.parent.removeChild(this.self)
 
                 this.self = undefined
@@ -51,7 +53,8 @@ export class Component {
             } else {
                 this.self = document.createElement('div')
 
-                fragment?.appendChild(this.self) ?? this.parent?.appendChild(this.self)
+                fragment?.insertBefore(this.self, this.nextNeighbor) ??
+                    this.parent?.insertBefore(this.self, this.nextNeighbor)
             }
 
             // We want to create a new dom for each div, and once for the web component case
@@ -92,7 +95,8 @@ export class Component {
                 this.self.style.cssText = this.styles
             }
             if (this.parent && this.self) {
-                fragment?.appendChild(this.self) ?? this.parent.appendChild(this.self)
+                fragment?.insertBefore(this.self, this.nextNeighbor) ??
+                    this.parent.insertBefore(this.self, this.nextNeighbor)
             }
         } else {
             this.self = components
@@ -100,7 +104,8 @@ export class Component {
                 this.self.style.cssText = this.styles
             }
             if (this.parent) {
-                fragment?.appendChild(this.self) ?? this.parent.appendChild(this.self)
+                fragment?.insertBefore(this.self, this.nextNeighbor) ??
+                    this.parent.insertBefore(this.self, this.nextNeighbor)
             }
         }
     }
