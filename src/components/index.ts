@@ -40,7 +40,7 @@ export * from './h4';
 export * from './h5';
 export * from './h6';
 export * from './head';
-export * from './heading';
+export * from './header';
 export * from './hr';
 export * from './i';
 export * from './iframe';
@@ -90,6 +90,7 @@ export * from './sup';
 export * from './table';
 export * from './tbody';
 export * from './td';
+export * from './textarea'
 export * from './tfoot';
 export * from './th';
 export * from './thead';
