@@ -1,7 +1,7 @@
 import { RootComponent } from './rootComponent'
 import { Component } from '../component'
 
-export class Heading extends RootComponent {
+export class Header extends RootComponent {
     public element = document.createElement('header')
 
     constructor(public children?: string | Component[]) {
