@@ -1,3 +1,4 @@
+import { S } from '.'
 import { Observable } from './observable'
 
 interface Observables {
@@ -12,6 +13,7 @@ export class Component {
     public observables: Observables = {}
     public attributes: Attributes = {}
     public styles?: string
+    private stylesCache?: string[]
     private self?: HTMLElement
     private parent?: HTMLElement
     private shadowDom?: ShadowRoot
@@ -22,7 +24,7 @@ export class Component {
         this.init()
     }
 
-    init(parent?: HTMLElement, fragment?: DocumentFragment) {
+    init(parent?: HTMLElement, fragment?: DocumentFragment, styles: string[] = []){
         const components = this.render()
 
         // If there is a parent passed in, assign it to this.parent
@@ -77,6 +79,7 @@ export class Component {
             // Add a style component
             if (this.styles) {
                 const styles = document.createElement('style')
+
                 styles.innerHTML = this.styles
 
                 _fragment.appendChild(styles)
@@ -88,21 +91,35 @@ export class Component {
         } else if (components instanceof Component) {
             // Render it to the parent, we dont want to make a div to contain it so we're also going to have to
             //   set this.self to the component's self
-            components.init(this.parent)
+            components.init(this.parent, undefined, [this.styles ?? '', ...(this.stylesCache) ? [...this.stylesCache, ...styles] : styles])
+            this.stylesCache = [...(this.stylesCache) ? this.stylesCache : [], ...styles]
             this.self = components.self
 
-            if (this.self && this.styles) {
-                this.self.style.cssText = this.styles
-            }
             if (this.parent && this.self) {
                 fragment?.insertBefore(this.self, this.nextNeighbor) ??
                     this.parent.insertBefore(this.self, this.nextNeighbor)
             }
         } else {
             this.self = components
-            if (this.self && this.styles) {
-                this.self.style.cssText = this.styles
+
+            function trim(string: string) {
+                return string.replace(/\s{2,}|\n/g, ' ').trim() + ' '
+            } 
+
+            if (this.self) {
+                let completeStyles = ''
+
+                if (this.styles) {
+                    completeStyles += trim(this.styles)
+                }
+
+                for (const style of styles) {
+                    completeStyles += trim(style)
+                }
+
+                this.self.style.cssText = completeStyles
             }
+
             if (this.parent) {
                 fragment?.insertBefore(this.self, this.nextNeighbor) ??
                     this.parent.insertBefore(this.self, this.nextNeighbor)
