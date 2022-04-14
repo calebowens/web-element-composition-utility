@@ -1,16 +1,8 @@
-import { S } from '.'
-import { Observable } from './observable'
-
-interface Observables {
-    [name: string]: Observable<any>
-}
-
 interface Attributes {
     [name: string]: string
 }
 
 export class Component {
-    public observables: Observables = {}
     public attributes: Attributes = {}
     public styles?: string
     private stylesCache?: string[]
