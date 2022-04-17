@@ -6,7 +6,7 @@ export type ComponentTree = (SuperComponent | ComponentTree)[]
 
 export class SuperComponent {
     // public attributes: Attributes = {}
-    protected self: Element = document.createElement('div')
+    protected _self: Element = document.createElement('div')
     private initialised: boolean = false
 
     constructor() {
@@ -16,16 +16,16 @@ export class SuperComponent {
         this._render()
     }
 
-    init(parent: Element) {
+    _init(parent: Element | ShadowRoot) {
         this._render()
 
         if (this.initialised) {
-            this.self.parentElement?.removeChild(this.self)
+            this._self.parentElement?.removeChild(this._self)
         } else {
             this.initialised = true
         }
 
-        parent.appendChild(this.self)
+        parent.appendChild(this._self)
     }
 
     /**
@@ -35,44 +35,23 @@ export class SuperComponent {
     }
 }
 
-export class HTMLComponent extends SuperComponent {
-    public element!: Element
-
-    constructor(private innerText: string) {
-        super()
-
-    }
-
-    protected setElement(element: Element) {
-         this.element = element
-
-        this.self = this.element
-
-
-        if (this.self instanceof HTMLElement) {
-            this.self.innerText = this.innerText
-        }
-    }
-}
 
 export class Component extends SuperComponent {
     protected _render() {
         const componentTree = this.render()
 
-        this.self.innerHTML = ''
+        this._self.innerHTML = ''
 
-        this._renderComponents(componentTree, this.self)
-
-        return this.self
+        this._renderComponents(componentTree, this._self)
     }
 
-    private _renderComponents(components: ComponentTree, parent: Element) {
+    protected _renderComponents(components: ComponentTree, parent: Element | ShadowRoot) {
         components.forEach((component) => {
             if (Array.isArray(component)) {
                 // Component is really a ComponentTree
                 const newParent = document.createElement('div')
 
-                this.self.appendChild(newParent)
+                this._self.appendChild(newParent)
 
                 this._renderComponents(component, newParent)
 
@@ -80,7 +59,7 @@ export class Component extends SuperComponent {
             } else {
                 // Init component which will also rerender it
                 // TODO: Consider if this will cause future issues if init() is overridden
-                component.init(parent)
+                component._init(parent)
             }
         })
     }
@@ -90,9 +69,34 @@ export class Component extends SuperComponent {
     }
 }
 
-export class ShadowComponent extends Component {
 
+export class HTMLComponent extends Component {
+    public element!: Element
+
+    constructor(private inner?: string | ComponentTree) {
+        super()
+    }
+
+    protected _setElement(element: Element) {
+        this.element = element
+        this._self = this.element
+    }
+
+    protected _render() {
+        if (this.inner) {
+            if (typeof this.inner === "string") {
+                if (this._self instanceof HTMLElement) {
+                    this._self.innerText = this.inner
+                }
+            } else {
+                this._self.innerHTML = ''
+
+                this._renderComponents(this.inner, this._self)
+            }
+        }
+    }
 }
+
 
 export function registerComponent(component: { new (): Component }, name: string) {
     class CustomElement extends HTMLElement {
@@ -101,7 +105,7 @@ export function registerComponent(component: { new (): Component }, name: string
         constructor() {
             super()
             this.root = new component()
-            this.root.init(this)
+            this.root._init(this)
         }
     }
 
