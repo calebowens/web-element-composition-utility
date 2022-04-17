@@ -7,9 +7,10 @@ export class Observable<T> {
     set value(value: T) {
         this._value = value
 
-        this.callbacks.forEach(async (callback) => {
+        this.callbacks.forEach((callback) => new Promise<void>((resolve => {
             callback(value)
-        })
+            resolve()
+        })))
     }
 
     get value() {
@@ -18,5 +19,9 @@ export class Observable<T> {
 
     onUpdate(cb: (value: T) => void) {
         this.callbacks.push(cb)
+    }
+
+    removeListener(cb: (value: T) => void) {
+        this.callbacks.filter((value) => value !== cb)
     }
 }
