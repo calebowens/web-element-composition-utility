@@ -69,9 +69,8 @@ export class Component extends SuperComponent {
     }
 }
 
-
 export class HTMLComponent extends Component {
-    constructor(public children?: string | ComponentTree) {
+    constructor(public children: string | ComponentTree | undefined) {
         super()
     }
 
