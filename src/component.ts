@@ -110,3 +110,17 @@ export function registerComponent(component: { new (): Component }, name: string
 
     customElements.define(name, CustomElement)
 }
+
+export function mountComponent<T extends Component>(component: { new (): T }, query: string): T {
+    const parent = document.querySelector(query)
+
+    if (!parent) {
+        throw "Parent not found"
+    }
+
+    const instance = new component()
+
+    instance._init(parent)
+
+    return instance
+}

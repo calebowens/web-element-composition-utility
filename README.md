@@ -94,21 +94,15 @@ module.exports = {
 main.ts
 
 ```ts
-import { Component, P } from "wecu";
+import { Component, P, mountComponent } from "wecu";
 
 class Root extends Component {
-  constructor() {
-    super();
-    // Init on the root element
-    this.init(document.getElementById("app"));
-  }
-
   render() {
     return [new P("Hello World!")];
   }
 }
 
-new Root();
+mountComponent(Root, '#app')
 ```
 
 index.html
@@ -131,7 +125,7 @@ index.html
 main.ts
 
 ```ts
-import { Component, P, Button } from "wecu";
+import { Component, P, Button, mountComponent } from "wecu";
 
 class Root extends Component {
   private toggle = new Button("Toggle");
@@ -139,8 +133,6 @@ class Root extends Component {
 
   constructor() {
     super();
-
-    this.init(document.getElementById("app")); // Register the event listener on the internal element of the button
 
     this.toggle.element.addEventListener("click", () => {
       this.show = !this.show; // We've modified state so we need to re-render the button
@@ -156,7 +148,7 @@ class Root extends Component {
   }
 }
 
-new Root();
+mountComponent(Root, '#app')
 ```
 
 index.html
@@ -179,7 +171,7 @@ index.html
 main.ts
 
 ```ts
-import { Component, Observable, P, Button } from "wecu";
+import { Component, Observable, P, Button, mountComponent } from "wecu";
 
 class Root extends Component {
   private toggle = new Button("Toggle");
@@ -188,8 +180,6 @@ class Root extends Component {
 
   constructor() {
     super();
-
-    this.init(document.getElementById("app"));
 
     // Register the event listener on the internal element of the button
     this.toggle.element.addEventListener("click", () => {
@@ -212,7 +202,7 @@ class Root extends Component {
   }
 }
 
-new Root();
+mountComponent(Root, '#app')
 ```
 
 index.html
@@ -235,24 +225,15 @@ index.html
 main.ts
 
 ```ts
-import { Component, createElement, P } from "wecu";
+import { Component, registerComponent, P } from "wecu";
 
 class Root extends Component {
-  constructor() {
-    super();
-
-    // As we're registering it as a web component, I don't need to call
-    //   init().
-    // We could remove the constructor as we're not instantiating any variables
-    //   here.
-  }
-
   render() {
     return [new P("Hello World!")];
   }
 }
 
-createElement(Root, "x-root");
+registerComponent(Root, "x-root");
 ```
 
 index.html
@@ -275,7 +256,7 @@ index.html
 main.ts
 
 ```ts
-import { Component, createElement, P } from "wecu";
+import { Component, registerComponent, P } from "wecu";
 
 class Root extends Component {
   render() {
@@ -293,7 +274,7 @@ class Root extends Component {
   }
 }
 
-createElement(Root, "x-root");
+registerComponent(Root, "x-root");
 ```
 
 index.html
@@ -316,7 +297,7 @@ index.html
 main.ts
 
 ```ts
-import { Button, Component, Input, Emitter, P } from "wecu";
+import { Button, Component, Input, Emitter, P, registerComponent } from "wecu";
 
 export default class CreateTask extends Component {
   private addTask = new Button("Create Task");
@@ -358,7 +339,7 @@ export default class Root extends Component {
   }
 }
 
-createElement(Root, "x-root");
+registerComponent(Root, "x-root");
 ```
 
 index.html
