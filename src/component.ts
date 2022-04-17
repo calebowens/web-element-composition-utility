@@ -46,7 +46,7 @@ export class Component extends SuperComponent {
     }
 
     protected _renderComponents(components: ComponentTree, parent: Element | ShadowRoot) {
-        components.forEach((component) => {
+        components.filter(a => a).forEach((component) => {
             if (Array.isArray(component)) {
                 // Component is really a ComponentTree
                 const newParent = document.createElement('div')

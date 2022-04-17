@@ -1,7 +1,6 @@
 import { HTMLComponent, ComponentTree } from './component'
 
-
-function generateComponent(componentName: keyof HTMLElementTagNameMap): typeof HTMLComponent {
+function generateComponent<T extends HTMLComponent>(componentName: keyof HTMLElementTagNameMap): new (inner?: string | ComponentTree) => T {
     return class extends HTMLComponent {
         constructor(inner?: string | ComponentTree) {
             super(inner)
@@ -61,7 +60,9 @@ export const HR = generateComponent('hr')
 export const HTML = generateComponent('html')
 export const I = generateComponent('i')
 export const IFrame = generateComponent('iframe')
+export const Input = generateComponent('input')
 export const Img = generateComponent('img')
+export const Label = generateComponent('label')
 export const Link = generateComponent('link')
 export const Main = generateComponent('main')
 export const Map = generateComponent('map')

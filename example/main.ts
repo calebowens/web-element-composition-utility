@@ -1,59 +1,111 @@
-import { HTMLComponent, Component, registerComponent } from '../src/component'
-
-class P extends HTMLComponent {
-    constructor(innerText: string) {
-        super(innerText)
-        this.setElement(document.createElement('p'))
-    }
-}
-
-class Button extends HTMLComponent {
-    constructor(innerText: string) {
-        super(innerText)
-        this.setElement(document.createElement('button'))
-    }
-}
-
-class Style extends HTMLComponent {
-    constructor(innerText: string) {
-        super(innerText)
-        this.setElement(document.createElement('style'))
-    }
-}
-
-class Foo extends Component {
-    count = 0
-
-    button = new Button('Clicky Click')
-
-    style = new Style(`
-p {
-    color: red;
-}
-`)
+import {
+    HTMLComponent,
+    Component,
+    registerComponent,
+    Button,
+    H2,
+    P,
+    Input,
+    TextArea,
+    Label,
+} from '../src'
 
 
-    constructor() {
+class PostCreator extends Component {
+    private submit = new Button('submit')
+    private title = new Input()
+    private body = new TextArea()
+
+    constructor(appender: (post) => void) {
         super()
 
-        this.button.element.addEventListener('click', () => {
-            this.count += 1
+        this.submit.element.addEventListener('click', () => {
+            const post = new Post(
+                (this.title.element as HTMLInputElement).value,
+                (this.body.element as HTMLTextAreaElement).value
+            );
 
-            this.rerender()
+            (this.title.element as HTMLInputElement).value = '';
+            (this.body.element as HTMLTextAreaElement).value = '';
+
+
+            appender(post)
         })
     }
 
     render() {
         return [
-            new P(`Hi ${this.count}`),
             [
-                new P('Hello'),
-                new P('World'),
-                this.button
+                new Label('title'),
+                this.title,
             ],
-            this.style
+            [
+                new Label('body'),
+                this.body
+            ],
+            this.submit
         ]
     }
 }
 
-registerComponent(Foo, 'x-root')
+
+class Post extends Component {
+    private title: HTMLComponent
+    private body: HTMLComponent
+
+    constructor(title: string, body: string) {
+        super()
+
+        this.title = new H2(title)
+        this.body = new P(body)
+    }
+
+    render() {
+        return [
+            this.title,
+            this.body
+        ]
+    }
+}
+
+interface IList<T> {
+    append(T): void
+}
+
+class PostList extends Component implements IList<Post> {
+    private postCreator: PostCreator
+    private posts: Post[] = []
+
+    constructor(postCreator: new (appender: (post: Post) => void) => PostCreator) {
+        super()
+
+        this.postCreator = new postCreator(this.append.bind(this))
+    }
+
+    render() {
+        return [
+            this.postCreator,
+            this.posts
+        ]
+    }
+
+    append(post: Post) {
+        this.posts.push(post)
+
+        this.rerender()
+    }
+}
+
+class Root extends Component {
+    private postList = new PostList(
+        PostCreator
+    )
+
+    render() {
+        return [
+            this.postList
+        ]
+    }
+}
+
+registerComponent(Root, 'x-root')
