@@ -1,9 +1,10 @@
 import { HTMLComponent, ComponentTree } from './component'
 
-function generateComponent<T extends HTMLComponent>(componentName: keyof HTMLElementTagNameMap): new (inner?: string | ComponentTree) => T {
-    return class extends HTMLComponent {
-        constructor(inner?: string | ComponentTree) {
-            super(inner)
+function generateComponent(componentName: keyof HTMLElementTagNameMap): new (children?: string | ComponentTree) => HTMLComponent {
+    // @ts-ignore
+    return class extends HTMLComponent implements ConcreteComponent {
+        constructor(children?: string | ComponentTree) {
+            super(children)
 
             this._setElement(document.createElement(componentName))
         }
@@ -101,7 +102,6 @@ export const Strong = generateComponent('strong')
 export const Sub = generateComponent('sub')
 export const Summary = generateComponent('summary')
 export const Sup = generateComponent('sup')
-export const SVG = generateComponent('svg')
 export const Table = generateComponent('table')
 export const TBody = generateComponent('tbody')
 export const TD = generateComponent('td')

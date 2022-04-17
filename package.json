@@ -7,10 +7,9 @@
   "repository": "https://github.com/calebowens/web-element-composition-utility",
   "author": "Caleb Owens <hello@calebowens.com>",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "denoify": "^0.11.0",
-    "typescript": "^4.5.5",
+    "typescript": "^4.6.3",
     "vite": "^2.9.5"
   },
   "scripts": {
