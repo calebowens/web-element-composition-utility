@@ -10,7 +10,8 @@
   "dependencies": {},
   "devDependencies": {
     "denoify": "^0.11.0",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "vite": "^2.9.5"
   },
   "scripts": {
     "watch": "gulp watch",
