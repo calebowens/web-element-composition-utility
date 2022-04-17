@@ -6,7 +6,7 @@ export type ComponentTree = (SuperComponent | ComponentTree)[]
 
 export class SuperComponent {
     // public attributes: Attributes = {}
-    protected _self: Element = document.createElement('div')
+    public element: Element = document.createElement('div')
     private initialised: boolean = false
 
     constructor() {
@@ -20,12 +20,12 @@ export class SuperComponent {
         this._render()
 
         if (this.initialised) {
-            this._self.parentElement?.removeChild(this._self)
+            this.element.parentElement?.removeChild(this.element)
         } else {
             this.initialised = true
         }
 
-        parent.appendChild(this._self)
+        parent.appendChild(this.element)
     }
 
     /**
@@ -40,9 +40,9 @@ export class Component extends SuperComponent {
     protected _render() {
         const componentTree = this.render()
 
-        this._self.innerHTML = ''
+        this.element.innerHTML = ''
 
-        this._renderComponents(componentTree, this._self)
+        this._renderComponents(componentTree, this.element)
     }
 
     protected _renderComponents(components: ComponentTree, parent: Element | ShadowRoot) {
@@ -51,7 +51,7 @@ export class Component extends SuperComponent {
                 // Component is really a ComponentTree
                 const newParent = document.createElement('div')
 
-                this._self.appendChild(newParent)
+                this.element.appendChild(newParent)
 
                 this._renderComponents(component, newParent)
 
@@ -71,28 +71,27 @@ export class Component extends SuperComponent {
 
 
 export class HTMLComponent extends Component {
-    public element!: Element
-
-    constructor(private inner?: string | ComponentTree) {
+    constructor(public children?: string | ComponentTree) {
         super()
     }
 
     protected _setElement(element: Element) {
         this.element = element
-        this._self = this.element
     }
 
     protected _render() {
-        if (this.inner) {
-            if (typeof this.inner === "string") {
-                if (this._self instanceof HTMLElement) {
-                    this._self.innerText = this.inner
+        if (this.children) {
+            if (typeof this.children === "string") {
+                if (this.element instanceof HTMLElement) {
+                    this.element.innerText = this.children
                 }
             } else {
-                this._self.innerHTML = ''
+                this.element.innerHTML = ''
 
-                this._renderComponents(this.inner, this._self)
+                this._renderComponents(this.children, this.element)
             }
+        } else {
+            this.element.innerHTML = ''
         }
     }
 }
