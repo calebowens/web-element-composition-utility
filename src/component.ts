@@ -1,11 +1,6 @@
-interface Attributes {
-    [name: string]: string
-}
-
 export type ComponentTree = (SuperComponent | ComponentTree)[]
 
 export class SuperComponent {
-    // public attributes: Attributes = {}
     public element: Element = document.createElement('div')
     private initialised: boolean = false
 
@@ -29,7 +24,7 @@ export class SuperComponent {
     }
 
     /**
-     * _render MUST mount children to the self component
+     * _render mounts children to the element
      * */
     protected _render() {
     }
