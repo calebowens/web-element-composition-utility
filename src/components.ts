@@ -1,8 +1,9 @@
 import { HTMLComponent, ComponentTree } from './component'
 
-function generateComponent(componentName: keyof HTMLElementTagNameMap): new (children?: string | ComponentTree) => HTMLComponent {
-    // @ts-ignore
-    return class extends HTMLComponent implements ConcreteComponent {
+function generateComponent<T extends keyof HTMLElementTagNameMap>(componentName: T) {
+    return class ConcreteHTMLComponent extends HTMLComponent {
+        element!: HTMLElementTagNameMap[T]
+
         constructor(children?: string | ComponentTree) {
             super(children)
 
@@ -10,6 +11,7 @@ function generateComponent(componentName: keyof HTMLElementTagNameMap): new (chi
         }
     }
 }
+
 
 export const A = generateComponent('a')
 export const Abbr = generateComponent('abbr')
@@ -99,6 +101,7 @@ export const Small = generateComponent('small')
 export const Source = generateComponent('source')
 export const Span = generateComponent('span')
 export const Strong = generateComponent('strong')
+export const Style = generateComponent('style')
 export const Sub = generateComponent('sub')
 export const Summary = generateComponent('summary')
 export const Sup = generateComponent('sup')

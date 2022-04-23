@@ -1,5 +1,7 @@
 # Web Element Composition Utility
 
+Due to limitations in typescripts .d.ts type declarations, its not possible to mark properties as private or protected. To try and help you understand what is intended for the user to call, I have prefixed "unsafe" methods with an underscore.
+
 ## About
 
 WECU is a library that lets you create web components and compose them together using an intuitive OOP system.
