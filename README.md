@@ -2,9 +2,13 @@
 
 Due to limitations in typescripts .d.ts type declarations, its not possible to mark properties as private or protected. To try and help you understand what is intended for the user to call, I have prefixed "unsafe" methods with an underscore.
 
+## API Documentation
+
+To view API docs visit [https://calebowens.github.io/web-element-composition-utility/](https://calebowens.github.io/web-element-composition-utility/)
+
 ## About
 
-WECU is a library that lets you create web components and compose them together using an intuitive OOP system.
+WECU is a library that lets you create web components and compose them together using an intuitive OO system.
 
 The idea behind WECU is that it lets the user take control of the program, with the user calling it on their own terms. WECU is based arround the idea that the GUI is bound to your data in the class, just how your actions are also. It results in creating a nice abstraction over the DOM for implementing reactive behaviour without taking any control away from the programmer like a framework would.
 
@@ -28,68 +32,30 @@ For bundling deno you'll need to use the enable libs "dom" and "es2015" in your 
 
 ## Examples
 
-These examples have been written with the following webpack based setup in mind:
+These examples have been written with the following typescript setup in mind:
 
-1. Install typescript
-
-- Run `yarn add typescript`
+- Run `yarn add typescript vite`
 - Add `tsconfig.json`
 
 ```json
 {
-  "compilerOptions": {
-    "outDir": "./public/",
-    "noImplicitAny": true,
-    "target": "es2015",
-    "allowJs": true,
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "strict": true
-  },
-  "include": ["./src"]
+    "compilerOptions": {
+        "target": "es2015",
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "outDir": "./lib",
+        "esModuleInterop": true,
+        "declaration": true,
+        "strict": true
+    },
+    "include": [
+        "./src"
+    ]
 }
 ```
 
-2. Install webpack
+- Run `yarn vite`
 
-- Run `yarn add webpack webpack-cli ts-loader`
-- Add `webpack.config.js`
-
-```js
-const path = require("path");
-
-module.exports = {
-  mode: "development",
-  watch: true,
-
-  entry: "./src/main.ts",
-
-  module: {
-    rules: [
-      {
-        test: /\.ts?$/,
-        use: "ts-loader",
-        exclude: /node_modules/,
-      },
-    ],
-  },
-
-  resolve: {
-    extensions: [".ts", ".js"],
-  },
-
-  output: {
-    path: path.resolve(__dirname, "public"),
-    filename: "main.js",
-  },
-};
-```
-
-3. Place `main.ts` in `src/`
-4. Place `index.html` in `public/`
-5. Compile typescript `yarn tsc`
-6. Run webpack `yarn webpack`
-7. Visit your `index.html`
 
 ### Root of an app
 
@@ -253,16 +219,16 @@ index.html
 </html>
 ```
 
-### Styling the Component
-
+### Styling Components
 main.ts
 
 ```ts
-import { Component, registerComponent, P } from "wecu";
+import { Component, registerComponent, P, Style } from "wecu";
 
 class Root extends Component {
   render() {
-    this.styles = `
+    return [
+      new Style(`
       :host {
         width: 100%;
       }
@@ -270,9 +236,9 @@ class Root extends Component {
       p {
         color: green;
       }
-    `;
-
-    return [new P("Hello World!")];
+    `),
+      new P("Hello World!")
+    ];
   }
 }
 
