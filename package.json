@@ -1,12 +1,20 @@
 {
   "name": "wecu",
   "description": "A library for building composable, reactive web components.",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "repository": "https://github.com/calebowens/web-element-composition-utility",
   "author": "Caleb Owens <hello@calebowens.com>",
   "license": "MIT",
+  "keywords": [
+    "Web Component",
+    "Observable",
+    "UI",
+    "Rendering",
+    "DOM",
+    "TypeScript"
+  ],
   "devDependencies": {
     "denoify": "^0.11.0",
     "lit": "^2.2.2",
