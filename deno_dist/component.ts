@@ -146,6 +146,18 @@ export class HTMLComponent extends SuperComponent {
     }
 }
 
+/**
+ * WebComponent is a specialization of Component which aids in the creation of Web Components
+ */
+export class WebComponent extends Component {
+    /**
+     * This hook allows you to get a reference to the parent element when it is mounted for the first time to the dom.
+     * This hook is only called when its registered as a web component.
+     *
+     * @param parent
+     */
+    onMount(parent: HTMLElement) {}
+}
 
 /**
  * This function registers a Component as a Web Component. See more about Web Components https://developer.mozilla.org/en-US/docs/Web/Web_Components
@@ -153,7 +165,7 @@ export class HTMLComponent extends SuperComponent {
  * @arg component This is the component you want to be registered as a Web Component.
  * @arg name This will be the tag name for your component to be registered under.
  */
-export function registerComponent(component: { new (): Component | ShadowComponent }, name: string) {
+export function registerComponent(component: { new (): Component | ShadowComponent | WebComponent }, name: string) {
     class CustomElement extends HTMLElement {
         public root: Component | ShadowComponent
 
@@ -161,6 +173,10 @@ export function registerComponent(component: { new (): Component | ShadowCompone
             super()
             this.root = new component()
             this.root._init(this)
+
+            if (this.root instanceof WebComponent) {
+                this.root.onMount(this)
+            }
         }
     }
 
