@@ -4,3 +4,4 @@ dist/
 lib/
 src/main.ts
 test/
+.idea/
